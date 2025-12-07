@@ -125,6 +125,16 @@ async function showBotInfo(api, event, client, Users, config) {
   const seconds = Math.floor(uptime % 60);
   const time = moment().tz('Asia/Karachi').format('hh:mm:ss A || DD/MM/YYYY');
   
+  const uniqueCommands = new Set();
+  if (client && client.commands) {
+    client.commands.forEach((cmd) => {
+      if (cmd.config && cmd.config.name) {
+        uniqueCommands.add(cmd.config.name.toLowerCase());
+      }
+    });
+  }
+  const commandCount = uniqueCommands.size || 102;
+  
   const commandsFolder = path.join(__dirname, '../../../raza/commands');
   let latestFile = 'None';
   
@@ -147,7 +157,7 @@ async function showBotInfo(api, event, client, Users, config) {
 ├─────────────────┤
 │ 📅 ${time}
 │ 👤 ${userName}
-│ 📊 Commands: ${client.commands.size}
+│ 📊 Commands: ${commandCount}
 │ 🔧 Prefix: ${config.PREFIX}
 │ ⏰ Uptime: ${hours}h ${minutes}m ${seconds}s
 │ 📁 Latest: ${latestFile}
@@ -155,18 +165,13 @@ async function showBotInfo(api, event, client, Users, config) {
 │ Type ${config.PREFIX}help for commands
 ╰─────────────────╯`;
   
-  try {
-    api.shareContact(message, senderID, threadID, async (err, info) => {
-      if (err) {
-        api.sendMessage(message, threadID, messageID);
-      } else if (info) {
-        await new Promise(resolve => setTimeout(resolve, 15000));
-        api.unsendMessage(info.messageID).catch(() => {});
-      }
-    }, messageID);
-  } catch (e) {
-    api.sendMessage(message, threadID, messageID);
-  }
+  api.sendMessage(message, threadID, (err, info) => {
+    if (!err && info && info.messageID) {
+      setTimeout(() => {
+        try { api.unsendMessage(info.messageID); } catch (e) {}
+      }, 15000);
+    }
+  }, messageID);
 }
 
 async function showSuggestion(api, event, client, Users, config, commandName) {
@@ -186,15 +191,13 @@ async function showSuggestion(api, event, client, Users, config, commandName) {
 │ ❓ "${commandName}" not found
 │ 💡 Type ${config.PREFIX}help for commands
 ╰─────────────────╯`;
-    try {
-      api.shareContact(message, senderID, threadID, (err, info) => {
-        if (err) {
-          api.sendMessage(message, threadID, messageID);
-        }
-      }, messageID);
-    } catch (e) {
-      api.sendMessage(message, threadID, messageID);
-    }
+    api.sendMessage(message, threadID, (err, info) => {
+      if (!err && info && info.messageID) {
+        setTimeout(() => {
+          try { api.unsendMessage(info.messageID); } catch (e) {}
+        }, 10000);
+      }
+    }, messageID);
     return;
   }
   
@@ -216,18 +219,13 @@ async function showSuggestion(api, event, client, Users, config, commandName) {
 │ Type ${config.PREFIX}help for commands
 ╰─────────────────╯`;
   
-  try {
-    api.shareContact(message, senderID, threadID, async (err, info) => {
-      if (err) {
-        api.sendMessage(message, threadID, messageID);
-      } else if (info) {
-        await new Promise(resolve => setTimeout(resolve, 15000));
-        api.unsendMessage(info.messageID).catch(() => {});
-      }
-    }, messageID);
-  } catch (e) {
-    api.sendMessage(message, threadID, messageID);
-  }
+  api.sendMessage(message, threadID, (err, info) => {
+    if (!err && info && info.messageID) {
+      setTimeout(() => {
+        try { api.unsendMessage(info.messageID); } catch (e) {}
+      }, 15000);
+    }
+  }, messageID);
 }
 
 module.exports = handleCommand;

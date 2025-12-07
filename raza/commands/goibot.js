@@ -238,14 +238,36 @@ async function saveChatHistory(userID, history) {
 async function getUserName(api, userID) {
   try {
     const cached = getUserInfo(userID);
-    if (cached && cached.name) return cached.name;
+    if (cached && cached.name && cached.name !== 'Facebook user' && cached.name !== 'Dost') {
+      return cached.name;
+    }
     
     const info = await api.getUserInfo(userID);
-    const name = info[userID]?.name || 'Dost';
+    let name = info?.[userID]?.name;
+    
+    if (!name || name === 'Facebook user' || name === 'Facebook User' || name.toLowerCase().includes('facebook')) {
+      const firstName = info?.[userID]?.firstName;
+      const alternateName = info?.[userID]?.alternateName;
+      const vanity = info?.[userID]?.vanity;
+      
+      if (firstName && firstName !== 'Facebook' && !firstName.toLowerCase().includes('facebook')) {
+        name = firstName;
+      } else if (alternateName && !alternateName.toLowerCase().includes('facebook')) {
+        name = alternateName;
+      } else if (vanity && !vanity.toLowerCase().includes('facebook')) {
+        name = vanity.charAt(0).toUpperCase() + vanity.slice(1);
+      } else {
+        name = 'Dost';
+      }
+    }
+    
     const gender = detectGender(name);
-    setUserInfo(userID, name, gender);
+    if (name !== 'Dost') {
+      setUserInfo(userID, name, gender);
+    }
     return name;
-  } catch {
+  } catch (err) {
+    console.log('[GOIBOT] getUserName error:', err.message);
     return 'Dost';
   }
 }

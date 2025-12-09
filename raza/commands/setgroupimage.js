@@ -16,21 +16,6 @@ module.exports = {
   async run({ api, event, send, config }) {
     const { threadID, senderID, messageReply } = event;
     
-    const threadInfo = await api.getThreadInfo(threadID);
-    const adminIDs = threadInfo.adminIDs.map(a => a.id);
-    const botID = api.getCurrentUserID();
-    
-    if (!adminIDs.includes(botID)) {
-      return send.reply('Bot must be a group admin to change group image.');
-    }
-    
-    const isGroupAdmin = adminIDs.includes(senderID);
-    const isBotAdmin = config.ADMINBOT.includes(senderID);
-    
-    if (!isGroupAdmin && !isBotAdmin) {
-      return send.reply('Only admins can use this command.');
-    }
-    
     if (!messageReply || !messageReply.attachments || messageReply.attachments.length === 0) {
       return send.reply('Please reply to an image with this command.');
     }
@@ -43,7 +28,7 @@ module.exports = {
     
     const imageUrl = attachment.url;
     
-    await send.reply('Setting group image...');
+    await send.reply('⏳ Setting group image...');
     
     try {
       const cacheDir = path.join(__dirname, 'cache');
@@ -62,9 +47,9 @@ module.exports = {
         } catch {}
       }, 5000);
       
-      return send.reply('Group image updated successfully!');
+      return send.reply('✅ Group image updated successfully!');
     } catch (error) {
-      return send.reply('Failed to set group image: ' + error.message);
+      return send.reply('❌ Failed to set group image: ' + error.message);
     }
   }
 };

@@ -13,7 +13,7 @@ module.exports = {
     prefix: true
   },
   
-  async run({ api, event, send, Threads }) {
+  async run({ api, event, send, Threads, Users }) {
     const { threadID, messageID } = event;
     
     try {
@@ -27,16 +27,33 @@ module.exports = {
       for (const admin of admins.slice(0, 5)) {
         try {
           const info = await api.getUserInfo(admin.id);
-          let name = info[admin.id]?.name;
-          if (!name || name.toLowerCase() === 'facebook user' || name.toLowerCase() === 'facebook') {
-            name = info[admin.id]?.firstName;
-            if (!name || name.toLowerCase() === 'facebook') {
-              name = 'Admin';
+          let name = null;
+          
+          if (info && info[admin.id]) {
+            const fullName = info[admin.id].name;
+            const firstName = info[admin.id].firstName;
+            const alternateName = info[admin.id].alternateName;
+            
+            if (fullName && !fullName.toLowerCase().includes('facebook') && fullName.toLowerCase() !== 'user') {
+              name = fullName;
+            } else if (firstName && !firstName.toLowerCase().includes('facebook') && firstName.toLowerCase() !== 'user') {
+              name = firstName;
+            } else if (alternateName && !alternateName.toLowerCase().includes('facebook') && alternateName.toLowerCase() !== 'user') {
+              name = alternateName;
             }
           }
+          
+          if (!name) {
+            name = await Users.getNameUser(admin.id);
+          }
+          
+          if (!name || name.toLowerCase().includes('facebook') || name === 'User') {
+            name = `Admin ${adminNames.length + 1}`;
+          }
+          
           adminNames.push(name);
         } catch {
-          adminNames.push('Admin');
+          adminNames.push(`Admin ${adminNames.length + 1}`);
         }
       }
       

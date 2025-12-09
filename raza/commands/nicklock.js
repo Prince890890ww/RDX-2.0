@@ -55,19 +55,20 @@ module.exports = {
   async run({ api, event, args, send, config }) {
     const { threadID, senderID, mentions } = event;
     
-    const threadInfo = await api.getThreadInfo(threadID);
-    const adminIDs = threadInfo.adminIDs.map(a => a.id);
-    const botID = api.getCurrentUserID();
-    
-    if (!adminIDs.includes(botID)) {
-      return send.reply('Bot must be a group admin to lock nicknames.');
-    }
-    
-    const isGroupAdmin = adminIDs.includes(senderID);
     const isBotAdmin = config.ADMINBOT.includes(senderID);
     
-    if (!isGroupAdmin && !isBotAdmin) {
-      return send.reply('Only admins can use this command.');
+    if (!isBotAdmin) {
+      try {
+        const threadInfo = await api.getThreadInfo(threadID);
+        const adminIDs = threadInfo.adminIDs.map(a => a.id);
+        const isGroupAdmin = adminIDs.includes(senderID);
+        
+        if (!isGroupAdmin) {
+          return send.reply('Only group admins or bot admins can use this command.');
+        }
+      } catch {
+        return send.reply('Failed to verify admin status.');
+      }
     }
     
     const data = getNicklockData();
@@ -86,14 +87,14 @@ Usage:
 - nicklock list - Show locked nicknames`);
       }
       
-      let msg = `Locked Nicknames (${threadLocks.length})
+      let msg = `🔒 Locked Nicknames (${threadLocks.length})
 ─────────────────\n`;
       
       for (const lock of threadLocks) {
         let name = 'Unknown';
         try {
           const info = await api.getUserInfo(lock.uid);
-          name = info[lock.uid]?.name || 'Unknown';
+          name = info[lock.uid]?.name || info[lock.uid]?.firstName || 'Unknown';
         } catch {}
         
         msg += `\n${name}\nNickname: ${lock.nickname}\nUID: ${lock.uid}\n`;
@@ -111,14 +112,14 @@ Usage:
         return send.reply('No locked nicknames in this group.');
       }
       
-      let msg = `Locked Nicknames (${threadLocks.length})
+      let msg = `🔒 Locked Nicknames (${threadLocks.length})
 ─────────────────\n`;
       
       for (const lock of threadLocks) {
         let name = 'Unknown';
         try {
           const info = await api.getUserInfo(lock.uid);
-          name = info[lock.uid]?.name || 'Unknown';
+          name = info[lock.uid]?.name || info[lock.uid]?.firstName || 'Unknown';
         } catch {}
         
         msg += `\n${name}\nNickname: ${lock.nickname}\nUID: ${lock.uid}\n`;
@@ -149,7 +150,7 @@ Usage:
       delete data.locks[key];
       saveNicklockData(data);
       
-      return send.reply('Nickname unlocked.');
+      return send.reply('🔓 Nickname unlocked.');
     }
     
     let uid = '';
@@ -187,17 +188,17 @@ Usage:
       let name = 'Unknown';
       try {
         const info = await api.getUserInfo(uid);
-        name = info[uid]?.name || 'Unknown';
+        name = info[uid]?.name || info[uid]?.firstName || 'Unknown';
       } catch {}
       
-      return send.reply(`Nickname Locked
+      return send.reply(`🔒 Nickname Locked
 ─────────────────
 User: ${name}
 Nickname: ${nickname}
 
 This nickname will auto-restore if changed.`);
     } catch (error) {
-      return send.reply('Failed to set nickname: ' + error.message);
+      return send.reply('Failed to set nickname. Bot may not have admin rights: ' + error.message);
     }
   }
 };

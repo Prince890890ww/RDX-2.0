@@ -73,6 +73,10 @@ class ThreadsController {
     return ThreadsModel.setSettings(threadID, settings);
   }
 
+  setSetting(threadID, key, value) {
+    return ThreadsModel.setSettings(threadID, { [key]: value });
+  }
+
   getData(threadID) {
     return ThreadsModel.getData(threadID);
   }

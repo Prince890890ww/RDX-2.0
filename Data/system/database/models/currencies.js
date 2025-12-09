@@ -163,6 +163,45 @@ const Currencies = {
     
     transactions = transactions.slice(0, 50);
     return this.update(id, { transactions: JSON.stringify(transactions) });
+  },
+
+  getData(id) {
+    const currency = this.get(id) || this.create(id);
+    return {
+      exp: currency.exp || 0,
+      balance: currency.balance || 0,
+      bank: currency.bank || 0
+    };
+  },
+
+  setData(id, data) {
+    const currency = this.get(id) || this.create(id);
+    const updateData = {};
+    
+    if (typeof data.exp !== 'undefined') {
+      updateData.exp = data.exp;
+    }
+    if (typeof data.balance !== 'undefined') {
+      updateData.balance = data.balance;
+    }
+    if (typeof data.bank !== 'undefined') {
+      updateData.bank = data.bank;
+    }
+    
+    if (Object.keys(updateData).length > 0) {
+      return this.update(id, updateData);
+    }
+    return currency;
+  },
+
+  getExp(id) {
+    const currency = this.get(id) || this.create(id);
+    return currency.exp || 0;
+  },
+
+  addExp(id, amount) {
+    const currency = this.get(id) || this.create(id);
+    return this.update(id, { exp: (currency.exp || 0) + amount });
   }
 };
 

@@ -60,6 +60,22 @@ class CurrenciesController {
   addTransaction(userID, type, amount, note = '') {
     return CurrenciesModel.addTransaction(userID, type, amount, note);
   }
+
+  getData(userID) {
+    return CurrenciesModel.getData(userID);
+  }
+
+  setData(userID, data) {
+    return CurrenciesModel.setData(userID, data);
+  }
+
+  getExp(userID) {
+    return CurrenciesModel.getExp(userID);
+  }
+
+  addExp(userID, amount) {
+    return CurrenciesModel.addExp(userID, amount);
+  }
 }
 
 module.exports = CurrenciesController;

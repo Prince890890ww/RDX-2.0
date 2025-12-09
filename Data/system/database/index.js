@@ -32,11 +32,17 @@ db.exec(`
     id TEXT PRIMARY KEY,
     balance INTEGER DEFAULT 0,
     bank INTEGER DEFAULT 0,
+    exp INTEGER DEFAULT 0,
     dailyStreak INTEGER DEFAULT 0,
     lastDaily TEXT,
     lastWork TEXT,
     transactions TEXT DEFAULT '[]'
   );
 `);
+
+try {
+  db.exec(`ALTER TABLE currencies ADD COLUMN exp INTEGER DEFAULT 0`);
+} catch (e) {
+}
 
 module.exports = db;

@@ -4,9 +4,19 @@ const path = require('path');
 
 const CEREBRAS_API_URL = 'https://api.cerebras.ai/v1/chat/completions';
 
-const API_KEYS = process.env.CEREBRAS_API_KEYS 
-  ? process.env.CEREBRAS_API_KEYS.split(',').filter(k => k.trim())
-  : [];
+const API_KEYS = [
+  'csk-k3rpw3xh225hcxdpjc2edj3wynw4r9kf4c6xc63djmpxj8tf',
+  'csk-fhyxhr6dxx9twymw543nkjr3x6ynwvj8r8phtvpxwdnkp5cx',
+  'csk-2cp8yrkdy86nh26w3d8d8h5fjvtrwr3mtfwkk5vfmrfvtt9m',
+  'csk-3rx2kr6htdck5v8erj699cdwnvn9twwh9e9mevnxvmpxp8pe',
+  'csk-k4cpw68nwkyfd5685464tey5ctwk6cd46ck2cc4p29n6rpve',
+  'csk-5whkxw32emp33nv99dyvcv9hm4fx8x8ffvncfyyfrn265np9',
+  'csk-k3rpw3xh225hcxdpjc2edj3wynw4r9kf4c6xc63djmpxj8tf',
+  'csk-wyn2fedyfwcfv4c992w4kfdrfrrf8x94ed58ndd2wnfd5d8w',
+  'csk-rr6j59ym83y43fett5kmvyj8w58tjv3m4y24dep2h8fym2vk',
+  'csk-ww669p9x34mcmr36nkpek32v6ywdpnpn682xhy56t3d3f3re',
+  'csk-p5kjy6fnjpp58jfmmtp464wfejpk8rynpfn64hwpnmv9ew6f'
+];
 
 const OWNER_UID = '61582493356125';
 const OWNER_NAME = 'Raza';

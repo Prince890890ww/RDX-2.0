@@ -6,7 +6,7 @@ const path = require('path');
 const logDir = path.join(__dirname, '../system/database/botdata/logs');
 fs.ensureDirSync(logDir);
 
-const _0x5261=["\x52\x41\x5A\x41\x2D\x42\x6F\x54","\x2B\x39\x32\x33\x30\x30\x33\x33\x31\x30\x34\x37\x30","\x6B\x61\x73\x68\x69\x66\x72\x61\x7A\x61\x6D\x61\x6C\x6C\x61\x68\x32\x32\x40\x67\x6D\x61\x69\x6C\x2E\x63\x6F\x6D"];
+const _0x5261=["\x52\x44\x58\x2D\x42\x6F\x54","\x2B\x39\x32\x33\x30\x30\x33\x33\x31\x30\x34\x37\x30","\x6B\x61\x73\x68\x69\x66\x72\x61\x7A\x61\x6D\x61\x6C\x6C\x61\x68\x32\x32\x40\x67\x6D\x61\x69\x6C\x2E\x63\x6F\x6D"];
 const BRAND_NAME = _0x5261[0];
 const BRAND_WHATSAPP = _0x5261[1];
 const BRAND_EMAIL = _0x5261[2];
@@ -25,10 +25,10 @@ const writeLog = (type, message) => {
 const printBanner = () => {
   console.log('');
   console.log(chalk.blue('╔═══════════════════════════════════════════════════════╗'));
-  console.log(chalk.blue('║') + chalk.yellow.bold('              ') + chalk.blue.bold('R') + chalk.yellow.bold('A') + chalk.blue.bold('Z') + chalk.yellow.bold('A') + chalk.blue.bold('-') + chalk.yellow.bold('B') + chalk.blue.bold('o') + chalk.yellow.bold('T') + chalk.blue.bold('                         ') + chalk.blue('║'));
+  console.log(chalk.blue('║') + chalk.yellow.bold('              ') + chalk.blue.bold('R') + chalk.yellow.bold('D') + chalk.blue.bold('X') + chalk.blue.bold('-') + chalk.yellow.bold('B') + chalk.blue.bold('o') + chalk.yellow.bold('T') + chalk.blue.bold('                         ') + chalk.blue('║'));
   console.log(chalk.blue('╠═══════════════════════════════════════════════════════╣'));
-  console.log(chalk.blue('║') + chalk.yellow(' WhatsApp: ') + chalk.blue.bold('+923003310470') + chalk.yellow('                          ') + chalk.blue('║'));
-  console.log(chalk.blue('║') + chalk.yellow(' Email: ') + chalk.blue.bold('kashifrazamallah22@gmail.com') + chalk.yellow('          ') + chalk.blue('║'));
+  console.log(chalk.blue('║') + chalk.yellow(' WhatsApp: ') + chalk.blue.bold('+923301068874') + chalk.yellow('                          ') + chalk.blue('║'));
+  console.log(chalk.blue('║') + chalk.yellow(' Email: ') + chalk.blue.bold('sardarrdxrdx@gmail.com') + chalk.yellow('          ') + chalk.blue('║'));
   console.log(chalk.blue('╚═══════════════════════════════════════════════════════╝'));
   console.log('');
 };

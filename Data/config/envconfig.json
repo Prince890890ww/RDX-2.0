@@ -1,10 +1,10 @@
 {
-  "BOTNAME": "Muskan",
+  "BOTNAME": "RDX BOT ",
   "PREFIX": ".",
   "ADMINBOT": [
-    "61582493356125",
-    "61582076572381",
-    "100065216344877"
+    "100009012838085",
+    "",
+    ""
   ],
   "REACT_DELETE_EMOJI": "😡",
   "PREFIX_ENABLED": true,

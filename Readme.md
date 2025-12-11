@@ -1,84 +1,23 @@
-# RAZA-BoT
+## <h3 align="center">
 
-## Overview
+  <p align="center"><img src="https://img.shields.io/badge/WELCOME%20TO -SARDAR RDX BOT-green?colorA=%23ff0000&colorB=%23017e40&style=flat-square">  
 
-RAZA-BoT is a Facebook Messenger automation bot built with Node.js. It provides group management, Islamic content posting, economy system, and various utility commands for Facebook Messenger groups and chats. The bot uses a custom Facebook Chat API (ws3-fca/raza-fca) to interact with Facebook Messenger.
+</h3>
 
-## User Preferences
+[![Typing SVG](https://readme-typing-svg.herokuapp.com?font=Neuton&font-weight=bold&size=20&color=FFFF00&background=FF0000&center=true&vCenter=true&width=400&height=60&lines=HELLO+FRIENDS+THE+SARDAR+RDX+HERE+👨‍💻+🫰;RDX+BOT+PROJECT;RDX+FCA+BOT;THANKYOU+FOR+USING+RDX+PROJECT&border=20px+solid+000000&speed=100)](https://git.io/typing-svg)
 
-Preferred communication style: Simple, everyday language.
+[![Facebook](https://img.shields.io/badge/Facebook-blue?style=for-the-badge&logo=facebook)](https://www.facebook.com/profile.php?id=100009012838085)
+[![Instagram](https://img.shields.io/badge/Instagram-purple?style=for-the-badge&logo=instagram)](😃)
+[![YouTube](https://img.shields.io/badge/YouTube-red?style=for-the-badge&logo=YouTube)](https://youtube.com/@rdx-bot-zone?si=07glyrc8s-lSIkK8)
+[![Whatsapp](https://img.shields.io/badge/whatsapp-green?style=for-the-badge&logo=whatsapp)](https://wa.me/qr/Q65AI7L4ZOBFO1)
+![Image](https://i.imgur.com/yr1YUuj.jpeg)
 
-## System Architecture
 
-### Core Components
-
-**Entry Points:**
-- `index.js` - Express server (port 5000) providing web dashboard for bot configuration and management
-- `raza.js` - Main bot runtime that handles Facebook login, command loading, and event listening
-
-**Facebook Integration:**
-- Uses `ws3-fca` (customized as `raza-fca`) - A Facebook Chat API wrapper for Node.js
-- Handles authentication via `appstate.json` (Facebook session cookies)
-- Manages `fb_dtsg` tokens for API requests in `fb_dtsg_data.json`
-
-**Command System:**
-- Commands stored in `raza/commands/` directory
-- Each command exports a `config` object (name, aliases, description, usage, category, permissions) and a `run` function
-- Commands loaded dynamically via `Data/system/handle/handleRefresh.js`
-- Supports prefixed commands (configurable prefix, default ".")
-
-**Event System:**
-- Events handled in `raza/events/` directory
-- Listen system in `Data/system/listen.js` routes events to appropriate handlers
-- Supports: message, message_reply, reactions, notifications
-
-**Database Layer (SQLite via better-sqlite3):**
-- Controllers in `Data/system/controllers/`:
-  - `users.js` - User management, banning, name caching
-  - `threads.js` - Group management, approval system, settings
-  - `currencies.js` - Economy system (balance, bank, daily rewards)
-
-**Configuration:**
-- `Data/config/envconfig.json` - Bot settings (name, prefix, admins, timezone, feature toggles)
-- `Data/config/islamic_messages.json` - Islamic content for auto-posting
-
-### Key Features
-
-1. **Group Management** - Admin commands, anti-join/anti-out, member kicking, group locking
-2. **Islamic Content** - Scheduled Quran ayats, namaz reminders, duas
-3. **Economy System** - Daily rewards, balance, deposits, gambling
-4. **AI Chat** - Integration with Cerebras AI for conversational responses
-5. **Media Commands** - Avatar, GIF search, image editing, cover creation
-6. **Friend Management** - Accept/decline requests, friend list, blocking
-
-### Design Patterns
-
-- **Modular Commands** - Each command is self-contained with config and execution
-- **Controller Pattern** - Database operations abstracted into controller classes
-- **Event-Driven** - Bot responds to Facebook events via listener callbacks
-- **Singleton API** - Single Facebook API instance shared across commands
-
-## External Dependencies
-
-**Core Libraries:**
-- `express` - Web server for dashboard
-- `ws3-fca` - Facebook Messenger API (customized locally)
-- `better-sqlite3` - SQLite database
-- `node-cron` - Scheduled tasks (Islamic posts, token refresh)
-- `moment-timezone` - Timezone handling (default: Asia/Karachi)
-
-**Media Processing:**
-- `jimp` - Image manipulation
-- `canvas` - Image generation
-- `axios` - HTTP requests for external APIs
-
-**External APIs Used:**
-- Facebook Graph API - Profile pictures, user info
-- Tenor API - GIF search
-- ImgBB - Image hosting
-- Cerebras AI - Conversational AI responses
-
-**Data Storage:**
-- SQLite database in `Data/system/database/`
-- JSON files for configuration and cached data
-- File-based logging in `Data/system/database/botdata/logs/`
+## NPM INSTALL 
+```bash
+npm install
+```
+## NPM START
+```bash
+npm start
+``

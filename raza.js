@@ -124,10 +124,10 @@ function loadConfig() {
   } catch (error) {
     logs.error('CONFIG', 'Failed to load config:', error.message);
     config = {
-      BOTNAME: 'RAZA BOT',
-      PREFIX: '.',
-      ADMINBOT: ['61582493356125'],
-      TIMEZONE: 'Asia/Karachi',
+      BOTNAME: 'Anika BOT',
+      PREFIX: '-',
+      ADMINBOT: ['100076343334427'],
+      TIMEZONE: 'Asia/Dhaka',
       PREFIX_ENABLED: true,
       REACT_DELETE_EMOJI: '😡',
       ADMIN_ONLY_MODE: false,

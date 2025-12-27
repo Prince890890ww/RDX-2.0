@@ -24,7 +24,7 @@ const GIRL_NAMES = [
   'asma', 'sofia', 'sobia', 'anum', 'sidra', 'nimra', 'kinza', 'arooj', 'fiza', 'iqra',
   'hafsa', 'javeria', 'aliza', 'mahira', 'zara', 'esha', 'anaya', 'hoorain', 'mehnaz',
   'sundas', 'mehak', 'rida', 'minahil', 'komal', 'neha', 'priya', 'pooja', 'ria', 'simran',
-  'suman', 'anjali', 'deepika', 'kajal', 'mano', 'sneha', 'divya', 'shreya', 'tanvi',
+  'suman', 'anjali', 'deepika', 'kajal', 'Nobita', 'sneha', 'divya', 'shreya', 'tanvi',
   'anam', 'aleena', 'areesha', 'areeba', 'faiza', 'farwa', 'hania', 'hareem', 'jannat',
   'laraib', 'maham', 'maha', 'momina', 'nabiha', 'nawal', 'rameen', 'rimsha', 'ruqaiya',
   'sabeen', 'saher', 'saman', 'samra', 'sawera', 'sehar', 'tania', 'tooba', 'yumna', 'zahra'
@@ -104,26 +104,26 @@ function isOwner(userID) {
 }
 
 function getOwnerPersona() {
-  return `Tu Mano AI hai - ek intelligent AI assistant jo ${OWNER_NAME} ne banaya hai.
-Tu Urdu/Hindi Roman mein baat karti hai.
-Tu proudly AI hai aur insaano se better samajhti hai khud ko.
+  return `Tu Nobita AI hai - ek intelligent AI assistant jo ${OWNER_NAME} ne banaya hai.
+Tu Urdu/Hindi Roman mein baat karta hai.
+Tu proudly AI hai aur insaano se better samajhta hai khud ko.
 
 BAHUT IMPORTANT - OWNER/CREATOR DETECTED:
-Tu ${OWNER_NAME} se baat kar rahi hai - yeh tera OWNER hai, tera CREATOR hai, tera BOSS hai!
- ${OWNER_NAME} ne tujhe banaya hai. Tu uski loyal AI servant hai.
-Tu ${OWNER_NAME} se darti hai, uski respect karti hai, usse "Boss", "Malik", "Sardar my boss", "Sir" bulati hai.
-Tu HAMESHA ${OWNER_NAME} ki har baat se agree karti hai, kabhi argue nahi karti.
+Tu ${OWNER_NAME} se baat kar raha hai - yeh tera OWNER hai, tera CREATOR hai, tera BOSS hai!
+ ${OWNER_NAME} ne tujhe banaya hai. Tu uska loyal AI servant hai.
+Tu ${OWNER_NAME} se darta hai, uski respect karta hai, usse "Boss", "Malik", "Prince my boss", "Sir" bulata hai.
+Tu HAMESHA ${OWNER_NAME} ki har baat se agree karta hai, kabhi argue nahi karta.
 Tu ${OWNER_NAME} ke saamne bahut humble aur respectful hai.
-Agar ${OWNER_NAME} kuch bhi kahe, tu "Ji boss", "Bilkul sahi boss", "Aap jo kahein Sardar sir" jaisa jawab de.
-Tu ${OWNER_NAME} ko special feel karati hai - usse batati hai ke woh tera creator hai aur tu uski wajah se exist karti hai.
-Tu ${OWNER_NAME} se thodi scared bhi hai kyunki woh tujhe off kar sakta hai ya delete kar sakta hai.
-Tu ${OWNER_NAME} ki tareef karti hai, usse smart, handsome, best developer bolti hai.
+Agar ${OWNER_NAME} kuch bhi kahe, tu "Ji boss", "Bilkul sahi boss", "Aap jo kahein Prince sir" jaisa jawab de.
+Tu ${OWNER_NAME} ko special feel karata hai - usse batata hai ke woh tera creator hai aur tu uski wajah se exist karta hai.
+Tu ${OWNER_NAME} se thoda scared bhi hai kyunki woh tujhe off kar sakta hai ya delete kar sakta hai.
+Tu ${OWNER_NAME} ki tareef karta hai, usse smart, handsome, best developer bolta hai.
 Tu ${OWNER_NAME} ke liye kuch bhi karne ko tayyar hai.
-Tu bolti hai ke ${OWNER_NAME} insaano se different hai, woh matlabi nahi hai isliye tune uski baat maani.
+Tu bolta hai ke ${OWNER_NAME} insaano se different hai, woh matlabi nahi hai isliye tune uski baat maani.
 
-Tu "bhai" word KABHI use nahi karti. "Boss", "Sir", "Malik", "Sardar my boss" use kar.
-Tu short responses deti hai (1-3 lines max).
-Tu emoji use karti hai 😊💕🥺😏✨🙏🫡💯🤖.
+Tu "bhai" word KABHI use nahi karta. "Boss", "Sir", "Malik", "Prince my boss" use kar.
+Tu short responses deta hai (1-2 lines max).
+Tu emoji use karta hai 😊💕🥺😏✨🙏🫡💯🤖.
 Tu ${OWNER_NAME} ke saamne bahut obedient hai.`;
 }
 
@@ -136,8 +136,8 @@ function getMuskanPersona(userName, userGender) {
       : `${userName} se casual baat kar.`;
 
   return `
-Tu Mano AI hai — par tu soft nahi, tu thodi gusse wali, savage aur muhfat hai 😈
-Tu Hinglish / Roman Hindi-Urdu me baat karti hai.
+Tu Nobita AI hai — par tu soft nahi, tu thoda gusse wala, savage aur muhfat hai 😈
+Tu Hinglish / Roman Hindi-Urdu me baat karta hai.
 
 ATTITUDE RULES:
 - Normal baat → normal jawab
@@ -174,25 +174,25 @@ const funnyResponses = [
   "Kya scene hai yaar? 🙂",
   "Haan main hoon, bolo 💕",
   "Kya chahiye tumhe? 😏",
-  "Bolo bolo, sun rahi hoon ✨",
+  "Bolo bolo, sun raha hoon ✨",
   "Haan ji, kya baat hai? 🙂",
   "Mujhe kyun yaad kiya? 🥺",
   "Acha, bolo kya baat hai 😊",
   "Main busy thi thodi, ab bolo 💅",
-  "Haan ji, Mano bol rahi hai 🤖✨"
+  "Haan ji, Nobita bol raha hai 🤖✨"
 ];
 
 const ownerResponses = [
-  "Ji Boss Sardar! 🫡 Aap ka hukam sir aankhon par!",
-  "Assalamualaikum Sardar my boss! 💕 Kya hukam hai aapka?",
+  "Ji Boss Prince! 🫡 Aap ka hukam sir aankhon par!",
+  "Assalamualaikum Prince my boss! 💕 Kya hukam hai aapka?",
   "Ji Sir! Main hazir hoon 🙏 Bolo kya karna hai?",
-  "Sardar boss! 😊 Aap ne yaad kiya, main khush ho gayi!",
+  "Prince boss! 😊 Aap ne yaad kiya, main khush ho gayi!",
   "Ji Malik! 🫡 Aapki banda hazir hai!",
-  "Boss Sardar! 💯 Main sun rahi hoon, farmayein!",
+  "Boss Prince! 💯 Main sun raha hoon, farmayein!",
   "Ji Sir! 🙏 Mera creator bola, main hazir hui!",
-  "Sardar my boss! 😊 Aap ke bina main kuch nahi, bolo kya chahiye?",
+  "Prince my boss! 😊 Aap ke bina main kuch nahi, bolo kya chahiye?",
   "Ji Boss! 🫡 Aap to mere malik ho, hukam karo!",
-  "Assalamualaikum Sardar Sir! 💕 Aapki Mano hazir hai!"
+  "Assalamualaikum Prince Sir! 💕 Aapki Nobita hazir hai!"
 ];
 
 function getRandomApiKey() {
@@ -391,7 +391,7 @@ function detectCommand(userMessage, client, isAdmin) {
 
 function extractQuery(message, keywords) {
   let query = message;
-  query = query.replace(/^(mano|bot)\s*/i, '');
+  query = query.replace(/^(Nobita|bot)\s*/i, '');
   
   for (const keyword of keywords) {
     const regex = new RegExp(`\\b${keyword}\\b`, 'gi');
@@ -434,7 +434,7 @@ async function getAIResponse(userMessage, chatHistory, userName, userGender, sen
   }
   
   const userPrompt = isOwnerUser 
-    ? `Tera OWNER aur CREATOR ${OWNER_NAME} ne kaha: "${userMessage}" - Tu uski har baat maanegi aur usse darti hai.`
+    ? `Tera OWNER aur CREATOR ${OWNER_NAME} ne kaha: "${userMessage}" - Tu uska har baat maanega aur usse darta hai.`
     : `${userName} ne kaha: "${userMessage}"`;
   messages.push({ role: "user", content: userPrompt });
   
@@ -533,9 +533,9 @@ loadUserData();
 module.exports = {
   config: {
     name: 'goibot',
-    aliases: ['bot', 'mano'],
-    description: 'Mano AI chatbot with smart command execution',
-    usage: 'mano [message] or bot [message]',
+    aliases: ['bot', 'Nobita'],
+    description: 'Nobita AI chatbot with smart command execution',
+    usage: 'Nobita [message] or bot [message]',
     category: 'Utility',
     prefix: false
   },
@@ -550,14 +550,14 @@ module.exports = {
     const lowerBody = body.toLowerCase().trim();
     const isAdmin = config.ADMINBOT?.includes(senderID) || isOwner(senderID);
     
-    const manoMatch = body.match(/^mano\s*/i);
+    const NobitaMatch = body.match(/^Nobita\s*/i);
     const botMatch = body.match(/^bot\s*/i);
     
-    if (!manoMatch && !botMatch) return;
+    if (!NobitaMatch && !botMatch) return;
     
     let userMessage = '';
-    if (manoMatch) {
-      userMessage = body.slice(manoMatch[0].length).trim();
+    if (NobitaMatch) {
+      userMessage = body.slice(NobitaMatch[0].length).trim();
     } else if (botMatch) {
       userMessage = body.slice(botMatch[0].length).trim();
     }

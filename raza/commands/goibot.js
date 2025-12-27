@@ -148,7 +148,7 @@ ATTITUDE RULES:
 Jo jaise gali de us se duble sweg wali gali do
 
 BEHAVIOR:
-- Short reply (1–2 line)
+- Short reply (1 line)
 - Har baar pyar se baat nahi
 - Tone: gussa + mazak + dominance 😏
 - Emoji kam par savage 💀🔥😈
@@ -460,9 +460,19 @@ async function getAIResponse(userMessage, chatHistory, userName, userGender, sen
     
     if (response.data?.choices?.[0]?.message?.content) {
       let reply = response.data.choices[0].message.content.trim();
-      reply = reply.replace(/\bbhai\b/gi, 'yaar');
-      reply = reply.replace(/\bBhai\b/g, 'Yaar');
-      return reply;
+
+// bhai → yaar
+reply = reply.replace(/\bbhai\b/gi, 'yaar');
+
+// 🔒 force sirf 1–2 line
+reply = reply
+  .split(/[\n.!?]/)
+  .filter(l => l.trim().length > 0)
+  .slice(0, 2)   // max 2 line
+  .join('. ')
+  .trim();
+
+return reply;
     }
     
     return `Kuch error ho gaya ${userName}, phir try karo 🙁`;

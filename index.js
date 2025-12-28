@@ -28,7 +28,7 @@ function getConfig() {
     return {
       BOTNAME: 'Anika BOT',
       PREFIX: '-',
-      ADMINBOT: ['100076343334427'],
+      ADMINBOT: ['100004301674794'],
       TIMEZONE: 'Asia/Dhaka',
       PREFIX_ENABLED: true,
       REACT_DELETE_EMOJI: '😡',

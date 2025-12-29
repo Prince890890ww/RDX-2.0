@@ -19,7 +19,7 @@ function getRandomMessage() {
   return messages[Math.floor(Math.random() * messages.length)];
 }
 
-async function startTagging(api, threadID, targetUID, config, cachedName) {
+async function startTagging(api, threadID, targetUID, cachedName) {
   const key = `${threadID}_${targetUID}`;
   if (activeTargets.has(key)) return false;
 
@@ -35,7 +35,7 @@ async function startTagging(api, threadID, targetUID, config, cachedName) {
     } catch (err) {
       console.error('FYT Error:', err.message);
     }
-  }, 4000);
+  }, 4000); // 4 second interval
 
   activeTargets.set(key, interval);
   return true;
@@ -60,7 +60,11 @@ async function resolveTarget(event, args, Users) {
     targetName = await Users.getValidName(targetUID, 'User').catch(() => 'User');
   } else if (args[1]) {
     targetUID = args[1];
-    targetName = await Users.getValidName(targetUID, 'User').catch(() => targetUID);
+    try {
+      targetName = await Users.getValidName(targetUID, 'User');
+    } catch {
+      targetName = targetUID;
+    }
   }
 
   if (!targetUID) return null;
@@ -92,9 +96,7 @@ Tag kisi ko aur spam shuru karo! 😈`);
     }
 
     const action = args[0].toLowerCase();
-    if (action !== 'on' && action !== 'off') {
-      return send.reply('Invalid action! Use "on" or "off"');
-    }
+    if (action !== 'on' && action !== 'off') return send.reply('Invalid action! Use "on" or "off"');
 
     const target = await resolveTarget(event, args, Users);
     if (!target) return send.reply('Please @mention ya valid UID do.');
@@ -107,16 +109,11 @@ Tag kisi ko aur spam shuru karo! 😈`);
       if (!isAdmin) {
         const threadInfo = await api.getThreadInfo(threadID);
         const adminIDs = threadInfo.adminIDs.map(a => a.id);
-        if (!adminIDs.includes(senderID)) {
-          return send.reply('Only group admins can use this command! 😅');
-        }
+        if (!adminIDs.includes(senderID)) return send.reply('Only group admins can use this command! 😅');
       }
 
-      const started = await startTagging(api, threadID, targetUID, config, targetName);
-      if (!started) {
-        return send.reply(`${targetName} already being tagged! 😈
-Use "fyt off @${targetName}" to stop.`);
-      }
+      const started = await startTagging(api, threadID, targetUID, targetName);
+      if (!started) return send.reply(`${targetName} already being tagged! 😈\nUse "fyt off @${targetName}" to stop.`);
 
       return send.reply(`╔═══════════════════════════╗
 ║   🔥 FYT MODE ACTIVATED 🔥   ║
@@ -129,9 +126,7 @@ Use "fyt off @${targetName}" to stop!`);
 
     } else if (action === 'off') {
       const stopped = stopTagging(threadID, targetUID);
-      if (!stopped) {
-        return send.reply(`${targetName} is not being tagged!`);
-      }
+      if (!stopped) return send.reply(`${targetName} is not being tagged!`);
 
       return send.reply(`╔═══════════════════════════╗
 ║   ✅ FYT MODE STOPPED ✅   ║

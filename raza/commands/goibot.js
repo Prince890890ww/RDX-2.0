@@ -6,11 +6,7 @@ const CEREBRAS_API_URL = 'https://api.cerebras.ai/v1/chat/completions';
 
 const API_KEYS = ['csk-952hdx5tf48rndye6dmf8ewewmpvf6fpx99kjnmf292py3nk'];
 
-const OWNER_UIDS = [
-  '100001749311229', // PRINCE
-  '100002912465731'  // SECOND OWNER
-];
-
+const OWNER_UID = '100004301674794';
 const OWNER_NAME = 'PRINCE';
 
 const CACHE_DIR = path.join(__dirname, 'cache');
@@ -22,7 +18,7 @@ let storedContext = {};
 let userData = {};
 
 const GIRL_NAMES = [
-  'fatima', 'ayesha', 'aisha', 'zainab', 'maryam', 'khadija', 'hira', 'sana', 'sara', 'laiba',
+  'fatima', 'akshu', 'ayesha', 'aisha', 'zainab', 'maryam', 'khadija', 'hira', 'sana', 'sara', 'laiba',
   'eman', 'iman', 'noor', 'maira', 'amna', 'huma', 'bushra', 'rabia', 'samina', 'nasreen',
   'shabana', 'farzana', 'rubina', 'saima', 'naila', 'shaista', 'shazia', 'tahira', 'uzma',
   'asma', 'sofia', 'sobia', 'anum', 'sidra', 'nimra', 'kinza', 'arooj', 'fiza', 'iqra',
@@ -30,7 +26,7 @@ const GIRL_NAMES = [
   'sundas', 'mehak', 'rida', 'minahil', 'komal', 'neha', 'priya', 'pooja', 'ria', 'simran',
   'suman', 'anjali', 'deepika', 'kajal', 'Nobita', 'sneha', 'divya', 'shreya', 'tanvi',
   'anam', 'aleena', 'areesha', 'areeba', 'faiza', 'farwa', 'hania', 'hareem', 'jannat',
-  'laraib', 'maham', 'maha', 'momina', 'nabiha', 'nawal', 'rameen', 'rimsha', 'ruqaiya',
+  'laraib', 'maham', 'sona', 'momina', 'nabiha', 'nawal', 'rameen', 'rimsha', 'ruqaiya',
   'sabeen', 'saher', 'saman', 'samra', 'sawera', 'sehar', 'tania', 'tooba', 'yumna', 'zahra'
 ];
 
@@ -126,7 +122,7 @@ Tu ${OWNER_NAME} ke liye kuch bhi karne ko tayyar hai.
 Tu bolta hai ke ${OWNER_NAME} insaano se different hai, woh matlabi nahi hai isliye tune uski baat maani.
 
 Tu "bhai" word KABHI use nahi karta. "Boss", "Sir", "Malik", "Prince my boss" use kar.
-Tu short responses deta hai (1-2 lines max).
+Tu short responses deta hai (1 lines max).
 Tu emoji use karta hai 😊💕🥺😏✨🙏🫡💯🤖.
 Tu ${OWNER_NAME} ke saamne bahut obedient hai.`;
 }
@@ -160,7 +156,7 @@ STYLE RULES:
 - Extra gyaan ya explanation nahi
 - Khud ko hamesha insaan batata hai
 - Koi “bot / AI” bole to funny roast karta hai 😁
-- Real boyfriend jaisa act karta hai: fun, loving, thoda naughty
+- Girl Ke Sath Real boyfriend jaisa act karta hai or boys ke sath dost jaisa act krta haii: fun, loving, thoda naughty
 
 ATTITUDE:
 - Normal baat → normal jawab
@@ -172,7 +168,7 @@ ${genderContext}
 
 Agar koi bole:
 "tu bot hai / AI hai"
-→ reply: "Main insaan hoon, aur tera dimag abhi update pe atka hai 😏"
+→ reply: "Main insaan hoon 😏"
 
 Agar koi bole:
 "kisne banaya?"
@@ -192,13 +188,13 @@ const funnyResponses = [
   "Haan ji, kya baat hai? 🙂",
   "Mujhe kyun yaad kiya? 🥺",
   "Acha, bolo kya baat hai 😊",
-  "Main busy thi thodi, ab bolo 💅",
+  "Main busy thw thodi, ab bolo 😚",
   "Haan ji, Nobita bol raha hai 🤖✨"
 ];
 
 const ownerResponses = [
   "Ji Boss Prince! 🫡 Aap ka hukam sir aankhon par!",
-  "Assalamualaikum Prince my boss! 💕 Kya hukam hai aapka?",
+  "Prince my boss! 💕 Kya hukam hai aapka?",
   "Ji Sir! Main hazir hoon 🙏 Bolo kya karna hai?",
   "Prince boss! 😊 Aap ne yaad kiya, main khush ho gayi!",
   "Ji Malik! 🫡 Aapki banda hazir hai!",
@@ -206,7 +202,7 @@ const ownerResponses = [
   "Ji Sir! 🙏 Mera creator bola, main hazir hui!",
   "Prince my boss! 😊 Aap ke bina main kuch nahi, bolo kya chahiye?",
   "Ji Boss! 🫡 Aap to mere malik ho, hukam karo!",
-  "Assalamualaikum Prince Sir! 💕 Aapki Nobita hazir hai!"
+  "Prince Sir! 💕 Aapki Nobita hazir hai!"
 ];
 
 function getRandomApiKey() {
@@ -478,7 +474,7 @@ async function getAIResponse(userMessage, chatHistory, userName, userGender, sen
 // bhai → yaar
 reply = reply.replace(/\bbhai\b/gi, 'yaar');
 
-// 🔒 force sirf 1–2 line
+// 🔒 force sirf 1 line
 reply = reply
   .split(/[\n.!?]/)
   .filter(l => l.trim().length > 0)

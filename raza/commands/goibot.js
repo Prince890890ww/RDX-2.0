@@ -6,7 +6,11 @@ const CEREBRAS_API_URL = 'https://api.cerebras.ai/v1/chat/completions';
 
 const API_KEYS = ['csk-952hdx5tf48rndye6dmf8ewewmpvf6fpx99kjnmf292py3nk'];
 
-const OWNER_UID = '100001749311229';
+const OWNER_UIDS = [
+  '100001749311229', // PRINCE
+  '100002912465731'  // SECOND OWNER
+];
+
 const OWNER_NAME = 'PRINCE';
 
 const CACHE_DIR = path.join(__dirname, 'cache');

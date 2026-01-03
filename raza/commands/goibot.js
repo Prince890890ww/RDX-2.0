@@ -6,7 +6,7 @@ const CEREBRAS_API_URL = 'https://api.cerebras.ai/v1/chat/completions';
 
 const API_KEYS = ['csk-952hdx5tf48rndye6dmf8ewewmpvf6fpx99kjnmf292py3nk'];
 
-const OWNER_UID = '100004301674794';
+const OWNER_UID = '100001749311229';
 const OWNER_NAME = 'PRINCE';
 
 const CACHE_DIR = path.join(__dirname, 'cache');
@@ -521,7 +521,7 @@ async function executeCommand(commandName, args, context) {
 }
 
 async function handleAIChat(api, event, send, config, client, userMessage, userName, userGender, senderID, threadID, messageID) {
-  api.setMessageReaction("⏳", messageID, () => {}, true);
+  // api.setMessageReaction("⏳", messageID, () => {}, true);
   
   let history = await getChatHistory(senderID);
   
@@ -531,7 +531,7 @@ async function handleAIChat(api, event, send, config, client, userMessage, userN
   history.push({ role: "assistant", content: aiResponse });
   await saveChatHistory(senderID, history);
   
-  api.setMessageReaction("✅", messageID, () => {}, true);
+// api.setMessageReaction("✅", messageID, () => {}, true);
   
   const info = await api.sendMessage(aiResponse, threadID, messageID);
   

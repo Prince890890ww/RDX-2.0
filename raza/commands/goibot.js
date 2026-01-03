@@ -39,7 +39,7 @@ const BOY_NAMES = [
   'babar', 'danish', 'ehsan', 'fawad', 'haris', 'iqbal', 'javed', 'kareem', 'majid', 'mubashir',
   'noman', 'owais', 'qasim', 'rehan', 'saeed', 'sohail', 'taimoor', 'umair', 'uzair', 'wahab',
   'waqas', 'yousaf', 'zohaib', 'arham', 'ayaan', 'rayyan', 'ayan', 'azaan', 'rohan', 'aryan',
-  'raza', 'kael', 'usama', 'osama', 'waleed', 'sultan', 'murtaza', 'mustafa', 'abrar', 'adnan'
+  'raza', 'kapil', 'usama', 'osama', 'waleed', 'sultan', 'murtaza', 'mustafa', 'abrar', 'adnan'
 ];
 
 function detectGender(name) {

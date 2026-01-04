@@ -35,7 +35,7 @@ async function startTagging(api, threadID, targetUID, cachedName) {
     } catch (err) {
       console.error('FYT Error:', err.message);
     }
-  }, 4000); // 4 second interval
+  }, 14000); // 14 second interval
 
   activeTargets.set(key, interval);
   return true;
